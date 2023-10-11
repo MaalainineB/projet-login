@@ -1,0 +1,19 @@
+<div>
+    <h1>
+        Inscription
+    </h1>
+
+    <form [formGroup]="loginForm" action="#">
+      <div>
+          <label for="text" >Nom d'utilisateur</label>
+          <input type="text" formControlName="username" name="text" id="text" placeholder="Nom d'utilisateur" required="">
+      </div>
+      <div>
+          <label for="password" >mot de passe</label>
+          <input type="password"  formControlName="password" name="password" id="password" placeholder="••••••••"  required="">
+      </div>
+      <button type="submit" routerLink="/login" [disabled]="!loginForm.valid"> S'inscrire
+      </button>
+    </form>  
+    <a routerLink="/login">page de login</a>
+</div>

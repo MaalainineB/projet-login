@@ -1,0 +1,21 @@
+<div>
+    <h1>
+        Login
+    </h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <div>
+          <label for="text" >Nom d'utilisateur: </label>
+          <input type="text" formControlName="username" name="text" id="text" placeholder="Nom d'utilisateur" required="">
+      </div>
+      <div>
+          <label for="password" >mot de passe: </label>
+          <input type="password"  formControlName="password" name="password" id="password" placeholder="••••••••"  required="">
+      </div>
+      <button type="submit" routerLink="/home" [disabled]="!loginForm.valid"> Se connecter
+      </button>
+      <div>
+        Vous n'avez pas de compte? <a routerLink="/signup">sign up</a> 
+      </div>
+    </form>  
+</div>
