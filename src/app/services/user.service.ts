@@ -18,7 +18,7 @@ export class UserService {
     return this.http.post<any>('http://localhost:8080/auth/generateToken', formData, options)
   }
 
-  getUserProfile(token: string) {
+  getUserProfile(token: any) {
     // Create headers with the Authorization header containing the token
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -28,7 +28,7 @@ export class UserService {
     const options = { headers: headers };
 
     // Make the request to the back-end
-    return this.http.get('/api/user/userProfile', options);
+    return this.http.get('http://localhost:8080/auth/user/userProfile', options);
   }
 
   getDecodedAccessToken(token: string): any {

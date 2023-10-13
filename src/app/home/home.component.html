@@ -1,2 +1,8 @@
 <p>home works!</p>
+<div *ngIf="userProfileData">
+    <h1>User Profile</h1>
+    <p>Welcome to User Profile</p>
+    <p>User Information:</p>
+    <pre>{{ userProfileData | json }}</pre>
+  </div>
 <a href="#" class="text-blue-500 underline" routerLink="/login">page de login</a>

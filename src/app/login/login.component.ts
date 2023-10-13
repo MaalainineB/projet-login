@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -18,9 +18,11 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
 
+  usernameConnected: string = "ee"
 
 
-  constructor(private formBuilder: FormBuilder, private service:UserService, private router: Router, private authService:AuthService) {
+
+  constructor(private formBuilder: FormBuilder, private userService:UserService, private router: Router, private authService:AuthService) {
     
   }
 
@@ -28,7 +30,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value
       // console.log(formData)
-      this.service.login(formData)
+      this.userService.login(formData)
       .pipe (
         catchError((er: HttpErrorResponse) => {
           console.log(er.message)
@@ -39,11 +41,13 @@ export class LoginComponent {
           console.log(resp)
           if(!resp.er) {
             this.authService.setToken(resp)
-            const tokenInfo = this.service.getDecodedAccessToken(resp); // decode token
+            const tokenInfo = this.userService.getDecodedAccessToken(resp); // decode token
             const expireDate = tokenInfo.exp; // get token expiration dateTime
             console.log(tokenInfo); // show decoded token object in console
             console.log(expireDate); 
-            this.router.navigate(['/home'])
+            // this.router.navigate(['/home'])
+            // const usernameConnected = this.userService.getUserProfile(resp)
+            // console.log(usernameConnected)
           }
         })
     }
