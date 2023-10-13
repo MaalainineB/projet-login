@@ -12,6 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   login(formData: any): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/auth/generateToken', formData)
+    let option:any
+    return this.http.post<any>('http://localhost:8080/auth/generateToken', formData, {...option, responseType: 'text' })
   }
 }
