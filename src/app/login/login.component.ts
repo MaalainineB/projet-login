@@ -25,6 +25,7 @@ export class LoginComponent {
     submit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value
+      // console.log(formData)
       this.service.login(formData);
     }
 

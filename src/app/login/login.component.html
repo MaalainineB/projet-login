@@ -12,7 +12,7 @@
           <label for="password" >mot de passe: </label>
           <input type="password"  formControlName="password" name="password" id="password" placeholder="••••••••"  required="">
       </div>
-      <button type="submit" routerLink="/home" [disabled]="!loginForm.valid"> Se connecter
+      <button type="submit" [disabled]="!loginForm.valid"> Se connecter
       </button>
       <div>
         Vous n'avez pas de compte? <a routerLink="/signup">sign up</a> 
