@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginComponent {
 
 
 
-  constructor(private formBuilder: FormBuilder, private service:UserService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private service:UserService, private router: Router, private authService:AuthService) {
     
   }
 
@@ -37,6 +38,11 @@ export class LoginComponent {
         .subscribe ((resp: any) => {
           console.log(resp)
           if(!resp.er) {
+            this.authService.setToken(resp)
+            const tokenInfo = this.service.getDecodedAccessToken(resp); // decode token
+            const expireDate = tokenInfo.exp; // get token expiration dateTime
+            console.log(tokenInfo); // show decoded token object in console
+            console.log(expireDate); 
             this.router.navigate(['/home'])
           }
         })
