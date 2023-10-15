@@ -45,9 +45,9 @@ export class LoginComponent {
             const expireDate = tokenInfo.exp; // get token expiration dateTime
             console.log(tokenInfo); // show decoded token object in console
             console.log(expireDate); 
-            // this.router.navigate(['/home'])
-            // const usernameConnected = this.userService.getUserProfile(resp)
-            // console.log(usernameConnected)
+            this.router.navigate(['/home'])
+            const usernameConnected = this.userService.getUserProfile(resp)
+            console.log(usernameConnected)
           }
         })
     }
