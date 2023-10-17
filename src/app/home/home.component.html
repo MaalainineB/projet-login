@@ -1,29 +1,31 @@
-<div *ngIf="userProfileData">
+<!-- <div *ngIf="userProfileData">
     <h1>User Profile</h1>
     <p>Welcome to User Profile</p>
     <p>User Information:</p>
-    <!-- <pre>{{ userProfileData | json }}</pre> -->
+    <pre>{{ userProfileData | json }}</pre> 
     <div>
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full text-left text-sm font-light">
-                <thead             class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+      <div >
+        <div >
+          <div >
+            <div>
+              <table class="table">
+                <thead   >
                   
                   <tr>
-                    <th scope="col" class="px-6 py-4">#</th>
-                    <th scope="col" class="px-6 py-4">Name</th>
-                    <th scope="col" class="px-6 py-4">Email</th>
-                    <th scope="col" class="px-6 py-4">role</th>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col" >Name</th>
+                    <th scope="col" >Email</th>
+                    <th scope="col" >role</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="border-b dark:border-neutral-500">
-                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{ userProfileData.id }}</td>
-                    <td class="whitespace-nowrap px-6 py-4">{{ userProfileData.name }}</td>
-                    <td class="whitespace-nowrap px-6 py-4">{{ userProfileData.email }}</td>
-                    <td class="whitespace-nowrap px-6 py-4">@{{ userProfileData.roles }}</td>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td >{{ userProfileData.id }}</td>
+                    <td >{{ userProfileData.name }}</td>
+                    <td >{{ userProfileData.email }}</td>
+                    <td >{{ userProfileData.roles }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -34,5 +36,63 @@
     </div>
   </div>
 
+  
+
 
 <a href="#" class="text-blue-500 underline" routerLink="/login">page de login</a>
+
+<div *ngIf="userProfileData">
+
+<div class="card text-center">
+  <div class="card-header">Featured</div>
+  <div class="card-body">
+    <h5 class="card-title">Name:</h5>
+    <p class="card-text">{{ userProfileData.name }}</p>
+    <a href="#" class="btn btn-primary">Button</a>
+  </div>
+  <div class="card-footer text-muted">2 days ago</div>
+</div>
+</div> -->
+<div *ngIf="userProfileData">
+  <section class="vh-100" style="background-color: #f4f5f7;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
+          <div class="card mb-3" style="border-radius: .5rem;">
+            <div class="row g-0">
+              <div class="col-md-4 gradient-custom text-center text-white"
+                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <i class="far fa-edit mb-5"></i>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-4">
+                  <h6>Profile de l'utilisateur</h6>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>Nom</h6>
+                      <p class="text-muted">{{userProfileData.name}}</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>email</h6>
+                      <p class="text-muted">{{userProfileData.email}}</p>
+                    </div>
+                  </div>
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>roles</h6>
+                      <p class="text-muted">{{userProfileData.roles}}</p>
+                    </div>
+                  </div>
+<div>
+  <button type="button" class="btn btn-warning" (click)="logOut()">Se déconnecter</button>
+</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

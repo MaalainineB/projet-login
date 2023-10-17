@@ -1,4 +1,4 @@
-<h1  class="text-3xl font-bold">
+<!-- <h1  class="text-3xl font-bold">
     Inscription
   </h1>
   <div class="w-full max-w-xs">
@@ -27,6 +27,58 @@
         Vous avez déjà un compte? <a href="#" class="text-blue-500 underline" routerLink="/signup">Se connecter</a>
       </div>
     </form>
-  </div>
+  </div> -->
+
+  <section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+  
+                <h2 class="fw-bold mb-2 text-uppercase">Inscrivez-vous</h2>
+                <p class="text-white-50 mb-5">Entrez vos informations:</p>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit2()">
+  
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX">Nom:</label>
+                  <input type="text" id="typeNameX" class="form-control form-control-lg" formControlName="name" name="text"  placeholder="Nom" required="" />
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX">email:</label>
+                  <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="email" name="text" placeholder="email" required="" />
+                </div>
+  
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typePasswordX">Password:</label>
+                  <input type="password" id="typePasswordX" class="form-control form-control-lg" formControlName="password" name="password" id="password" placeholder="••••••••"  required="" />
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <label class="form-label" for="typeEmailX">roles:</label>
+                  <select type="text" id="typeRoleX" class="form-control form-control-lg" formControlName="roles" required="">
+                    <option value="ROLE_USER">ROLE_USER</option>
+                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                  </select>
+                </div>
+  
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+              </form>
+              <div>
+                <p class="mb-0">Vous avez un compte? <a href="#!" class="text-white-50 fw-bold" routerLink="/login">Connectez-vous</a>
+                </p>
+              </div>
+              </div>
+
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
   
