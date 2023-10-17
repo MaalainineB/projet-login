@@ -18,7 +18,7 @@ import { AppInterceptor } from './interceptors/app.interceptor';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,7 @@ export class UserService {
     const options = { headers: headers };
 
     // Make the request to the back-end
-    return this.http.get('http://localhost:8080/auth/user/userProfile', options);
+    return this.http.get('http://localhost:8080/auth/userdetails', options);
   }
 
   getDecodedAccessToken(token: string): any {

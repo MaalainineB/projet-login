@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   loginForm = this.formBuilder.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
@@ -47,12 +48,14 @@ export class LoginComponent {
             console.log(expireDate); 
             this.router.navigate(['/home'])
             const usernameConnected = this.userService.getUserProfile(resp)
-            console.log(usernameConnected)
+            console.log("***"+ JSON.stringify(usernameConnected))
           }
         })
     }
 
   }
+
+  
 
 }
 

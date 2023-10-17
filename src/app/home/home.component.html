@@ -1,8 +1,38 @@
-<p>home works!</p>
 <div *ngIf="userProfileData">
     <h1>User Profile</h1>
     <p>Welcome to User Profile</p>
     <p>User Information:</p>
-    <pre>{{ userProfileData | json }}</pre>
+    <!-- <pre>{{ userProfileData | json }}</pre> -->
+    <div>
+      <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-left text-sm font-light">
+                <thead             class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+                  
+                  <tr>
+                    <th scope="col" class="px-6 py-4">#</th>
+                    <th scope="col" class="px-6 py-4">Name</th>
+                    <th scope="col" class="px-6 py-4">Email</th>
+                    <th scope="col" class="px-6 py-4">role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b dark:border-neutral-500">
+                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{ userProfileData.id }}</td>
+                    <td class="whitespace-nowrap px-6 py-4">{{ userProfileData.name }}</td>
+                    <td class="whitespace-nowrap px-6 py-4">{{ userProfileData.email }}</td>
+                    <td class="whitespace-nowrap px-6 py-4">@{{ userProfileData.roles }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+
 <a href="#" class="text-blue-500 underline" routerLink="/login">page de login</a>

@@ -16,7 +16,7 @@ export class AppInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log(request.url);
     
-    if (!request.url.includes("auth/generateToken") || !request.url.includes("auth/user/userProfile") ) {
+    if (!request.url.includes("auth/generateToken") ) {
       let req = request.clone({
         setHeaders: {
           'Authorization': `Bearer ${this.authService.getToken()}`

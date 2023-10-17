@@ -11,7 +11,8 @@ export class SignupService {
   constructor(private http: HttpClient) { }
 
   signUp(formData:any): Observable<any> {
-    let option:any
-    return this.http.post<any>('http://localhost:8080/auth/addNewUser', formData)
+    let options:any = {responseType: 'text' }
+    //option {...option, responseType: 'text' } est un objet  qui contient les options de la requette, la reponse de la requette sera traité comme un text.
+    return this.http.post<any>('http://localhost:8080/auth/addNewUser', formData, options)
   }
 }
