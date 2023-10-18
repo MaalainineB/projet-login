@@ -25,14 +25,6 @@ export class UserService {
     return this.http.get('http://localhost:8080/auth/userdetails', options);
   }
 
-  getDecodedAccessToken(token: string): any {
-    try {
-      return jwt_decode(token);
-    } catch(Error) {
-      return null;
-    }
-  }
-
   canActivate(): boolean {
     if (localStorage.getItem('loggedIn') === 'true') {
       this.router.navigate(['/home']);

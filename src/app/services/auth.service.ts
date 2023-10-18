@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import jwt_decode from 'jwt-decode';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -12,6 +13,14 @@ export class AuthService {
 
   constructor(private router:Router, private http:HttpClient) { }
 
+  
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
+  }
 
     // Store the token in local storage
     setToken(token: string) {
@@ -62,13 +71,13 @@ export class AuthService {
           const decodedToken = JSON.parse(atob(token.split('.')[1]));
           
           // Durée de validité du jeton en secondes (par exemple, 900 secondes = 1/2 heure)
-          const tokenValidityDuration = 30;
+          const tokenValidityDuration = 10;
 
           // Timestamp actuel en secondes
           const currentTimestamp = Date.now() / 1000;
 
           // Vérifier si le jeton est expiré
-          if (decodedToken.iat && currentTimestamp - decodedToken.iat > tokenValidityDuration) {
+          if (decodedToken.iat && currentTimestamp - decodedToken.iat > tokenValidityDuration) { //si ledecodedToken.iat existe, ce qui signifie que le champ "iat" existe dans l'objet decodedToken et...
             console.log('Le jeton a expiré.');
             this.removeToken()
             localStorage.setItem('loggedIn','false')
@@ -85,5 +94,47 @@ export class AuthService {
         console.error('Token decoding error:', error);
       }
     }
+    
+  refreshAccessToken()  {
+    // Vérifiez si le token JWT expire bientôt
+    const currentToken = this.getToken();
+    if (currentToken) {
+      const decodedToken = this.getDecodedAccessToken(currentToken!);
+      if (decodedToken) {
+        // Récupérez la date d'émission (iat) du token
+        const issuedAt = decodedToken.iat * 1000; // Convertir en millisecondes
+
+        // Calculez la durée de validité du token (par exemple, 1 heure)
+        const tokenValidityDuration = 1000 * 8; // 1 heure en millisecondes
+
+        const requestData = { token: currentToken };
+
+
+         // Vérifiez si le token est sur le point d'expirer
+         if (Date.now() - issuedAt > tokenValidityDuration) {
+          let options: any = { responseType: 'text' }
+
+          this.http.post('http://localhost:8080/auth/refreshToken', requestData, options)
+            .subscribe((data: any) => {
+              if (data) {
+                this.setToken(data);
+                console.log('Token rafraîchi avec succès.');
+              } else {
+                console.error('Réponse invalide lors du rafraîchissement du token.');
+              }
+            }, (error) => {
+              console.error('Erreur lors du rafraîchissement du token :', error);
+              // Gérez l'erreur, par exemple, redirigez l'utilisateur vers la page de connexion
+            });
+          
+          
+        
+
+      }
+      }
+    }
+    
+
+}
 
 }

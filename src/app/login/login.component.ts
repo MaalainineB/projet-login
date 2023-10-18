@@ -44,7 +44,7 @@ export class LoginComponent {
               if(!resp.er) {
                 this.authService.setToken(resp)
                 localStorage.setItem('loggedIn','true')
-                const tokenInfo = this.userService.getDecodedAccessToken(resp); // decode token
+                const tokenInfo = this.authService.getDecodedAccessToken(resp); // decode token
                 const expireDate = tokenInfo.exp; // get token expiration dateTime
                 console.log(tokenInfo); // show decoded token object in console
                 console.log(expireDate); 
