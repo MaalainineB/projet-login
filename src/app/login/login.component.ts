@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
@@ -27,38 +27,34 @@ export class LoginComponent {
     
   }
 
+
     submit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value
       // console.log(formData)
-      this.authService.login(formData)
-      .pipe (
-        catchError((er: HttpErrorResponse) => {
-          console.log(er.message)
-          return throwError(() => er)
-        })
-      )
-        .subscribe ((resp: any) => {
-          console.log(resp)
-          if(!resp.er) {
-            this.authService.setToken(resp)
-            localStorage.setItem('loggedIn','true')
-            const tokenInfo = this.userService.getDecodedAccessToken(resp); // decode token
-            const expireDate = tokenInfo.exp; // get token expiration dateTime
-            console.log(tokenInfo); // show decoded token object in console
-            console.log(expireDate); 
-            this.router.navigate(['/home'])
-            const usernameConnected = this.userService.getUserProfile(resp)
-            console.log("***"+ JSON.stringify(usernameConnected))
-            console.log("je suis làààààààààààààààààààààààààààààààà")
-            this.authService.isTokenValid()
-          }
-        })
-    }
-
+          this.authService.login(formData)
+          .pipe (
+            catchError((er: HttpErrorResponse) => {
+              console.log(er.message)
+              return throwError(() => er)
+            })
+          )
+            .subscribe ((resp: any) => {
+              console.log(resp)
+              if(!resp.er) {
+                this.authService.setToken(resp)
+                localStorage.setItem('loggedIn','true')
+                const tokenInfo = this.userService.getDecodedAccessToken(resp); // decode token
+                const expireDate = tokenInfo.exp; // get token expiration dateTime
+                console.log(tokenInfo); // show decoded token object in console
+                console.log(expireDate); 
+                this.router.navigate(['/home'])
+                const usernameConnected = this.userService.getUserProfile(resp)
+                console.log("***"+ JSON.stringify(usernameConnected))
+              }
+            })
+        }
   }
-
-  
 
 }
 

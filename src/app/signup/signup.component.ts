@@ -26,6 +26,7 @@ export class SignupComponent {
     onSubmit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value
+      console.log(formData)
       this.signupService.signUp(formData)
       .pipe (
         catchError((er: HttpErrorResponse) => {
@@ -44,7 +45,7 @@ export class SignupComponent {
 
     onSubmit2() {
       if (this.loginForm.valid) {
-        const formData = this.loginForm.value as UserInfo;
+        const formData = this.loginForm.value;
         console.log(this.loginForm.value)
         this.signupService.signUp(formData).pipe(
           catchError((er: HttpErrorResponse) => {

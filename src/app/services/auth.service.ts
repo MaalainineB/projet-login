@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import jwt_decode from 'jwt-decode';
@@ -11,6 +11,7 @@ import jwt_decode from 'jwt-decode';
 export class AuthService {
 
   constructor(private router:Router, private http:HttpClient) { }
+
 
     // Store the token in local storage
     setToken(token: string) {
@@ -60,8 +61,8 @@ export class AuthService {
         if (token) {
           const decodedToken = JSON.parse(atob(token.split('.')[1]));
           
-          // Durée de validité du jeton en secondes (par exemple, 3600 secondes = 1 heure)
-          const tokenValidityDuration = 3600;
+          // Durée de validité du jeton en secondes (par exemple, 900 secondes = 1/2 heure)
+          const tokenValidityDuration = 30;
 
           // Timestamp actuel en secondes
           const currentTimestamp = Date.now() / 1000;
@@ -69,6 +70,9 @@ export class AuthService {
           // Vérifier si le jeton est expiré
           if (decodedToken.iat && currentTimestamp - decodedToken.iat > tokenValidityDuration) {
             console.log('Le jeton a expiré.');
+            this.removeToken()
+            localStorage.setItem('loggedIn','false')
+            this.router.navigate(['/login'])
           } else {
             console.log('Le jeton est valide.');
             // Vous pouvez autoriser l'accès aux ressources protégées ici
