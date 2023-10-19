@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { UserService } from './user.service';
 
@@ -10,6 +10,9 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class AuthService {
+
+  private countdownSubject = new BehaviorSubject<number>(0);
+  countdown$ = this.countdownSubject.asObservable();
 
   constructor(private router:Router, private http:HttpClient) { }
 
@@ -113,6 +116,8 @@ export class AuthService {
          // Vérifiez si le token est sur le point d'expirer
          if (Date.now() - issuedAt > tokenValidityDuration) {
           let options: any = { responseType: 'text' }
+
+          this.countdownSubject.next(tokenValidityDuration); // Démarre le compte à rebours
 
           this.http.post('http://localhost:8080/auth/refreshToken', requestData, options)
             .subscribe((data: any) => {
