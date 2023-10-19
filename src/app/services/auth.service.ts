@@ -3,13 +3,14 @@ import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import jwt_decode from 'jwt-decode';
+import { ToastService } from './toast.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private toastService:ToastService) { }
 
   private tokenValidityDuration = 20;
 
@@ -134,7 +135,12 @@ export class AuthService {
                 // this.expiration = 20 - 5;
                 console.log('Token rafraîchi avec succès.');
                 this.refreshTimer = setTimeout(() => {
-                  console.log("Timer expired");
+                    this.toastService.updateToastMessage('Message with countdown', 10); // Set the desired expiration time
+                    this.toastService.updateToastVisibility(true);
+                    setTimeout(() => {
+                      this.toastService.updateToastVisibility(false);
+                      this.logOut()
+                    }, 10000);
                 }, this.expiration);
               } else {
                 console.error('Réponse invalide lors du rafraîchissement du token.');

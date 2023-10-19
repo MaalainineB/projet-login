@@ -1,0 +1,26 @@
+<!-- <div class="position-fixed d-flex align-items-center justify-content-center" style="z-index: 9999;">
+    <div class="position-fixed d-flex align-items-center justify-content-center" style="backdrop-filter: blur(10px); z-index: 9998;"></div>
+    <div id="toast-undo" class="position-relative z-10 d-flex flex-column align-items-center w-100 max-w-lg p-4 border border-secondary text-secondary bg-white rounded-lg shadow-sm">
+      <div class="small font-weight-normal toast-message" *ngIf="toastMessage">
+        {{ toastMessage }}
+      </div>
+      <div class="d-flex align-items-center mt-2 space-x-2">
+        <a href="/home" class="small font-weight-medium text-primary text-decoration-none text-blue">Back to homepage</a>
+        <button (click)="closeToast()" type="button" class="ml-auto bg-white text-gray-400 hover-text-gray-700 rounded-circle focus-ring-2 focus-ring-secondary p-1.5 hover-bg-gray-100 d-flex align-items-center justify-content-center" aria-label="Close">
+          <span class="visually-hidden">Close</span>
+          <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div> -->
+  
+  <div class="position-fixed toast fade show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-danger text-white">
+      <i class="fas fa-exclamation-circle fa-lg me-2"></i>
+      <strong class="me-auto">Attention</strong>
+      <button type="button" class="btn btn-primary btn-sm">Restez connecté</button>
+    </div>
+    <div class="toast-body">{{ toastMessage }}</div>
+  </div>

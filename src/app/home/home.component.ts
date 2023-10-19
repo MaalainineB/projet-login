@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { UserInfo } from '../interfaces/user-info';
 import { Observable } from 'rxjs';
+import { ToastService } from '../services/toast.service';
 
 
 @Component({
@@ -21,12 +22,15 @@ export class HomeComponent implements OnInit {
     roles: "",
   } 
 
+  public isToastVisible$: Observable<boolean>;
+
+
   refreshTimer: any; // Variable pour stocker le timer
 
   keyBoardClickCompter = 0;
   
-    constructor(private userService:UserService, private authService:AuthService ) {
-      
+    constructor(private userService:UserService, private authService:AuthService, public toastService: ToastService ) {
+          this.isToastVisible$ = this.toastService.isToastVisible$;
     }
 
     startRefreshTimer() {

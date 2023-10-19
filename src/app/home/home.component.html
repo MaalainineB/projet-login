@@ -53,6 +53,11 @@
   <div class="card-footer text-muted">2 days ago</div>
 </div>
 </div> -->
+
+<div *ngIf="isToastVisible$ | async">
+  <app-toast></app-toast>
+</div>
+
 <div *ngIf="userProfileData">
   <section class="vh-100" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
