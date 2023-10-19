@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.refreshAccessToken()
+    this.authService.isTokenValid()
   }
 
 

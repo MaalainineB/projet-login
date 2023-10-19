@@ -12,7 +12,7 @@ import { UserInfo } from '../interfaces/user-info';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  loginForm = this.formBuilder.group({
+  signUpForm = this.formBuilder.group({
     name: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
@@ -24,8 +24,8 @@ export class SignupComponent {
 
 
     onSubmit() {
-    if (this.loginForm.valid) {
-      const formData = this.loginForm.value
+    if (this.signUpForm.valid) {
+      const formData = this.signUpForm.value
       console.log(formData)
       this.signupService.signUp(formData)
       .pipe (
@@ -44,9 +44,9 @@ export class SignupComponent {
     }
 
     onSubmit2() {
-      if (this.loginForm.valid) {
-        const formData = this.loginForm.value;
-        console.log(this.loginForm.value)
+      if (this.signUpForm.valid) {
+        const formData = this.signUpForm.value;
+        console.log(this.signUpForm.value)
         this.signupService.signUp(formData).pipe(
           catchError((er: HttpErrorResponse) => {
             console.log(er.message);

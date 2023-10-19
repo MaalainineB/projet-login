@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
-import { isThisTypeNode } from 'typescript';
-import { timer } from 'rxjs';
+import { UserInfo } from '../interfaces/user-info';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -13,13 +13,18 @@ import { timer } from 'rxjs';
 
 export class HomeComponent implements OnInit {
 
-  userProfileData: any; // Variable to store user profile data
+  userProfileData: UserInfo = {
+    id: 0,
+    name: "",
+    email: "",
+    password: "",
+    roles: "",
+  } 
 
   refreshTimer: any; // Variable pour stocker le timer
 
   keyBoardClickCompter = 0;
   
-
     constructor(private userService:UserService, private authService:AuthService ) {
       
     }
@@ -60,19 +65,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // private isTimeoutStarted = false;
-
-  // @HostListener('document:mousemove', ['$event'])
-  // onMouseMove(e: MouseEvent) {
-  //   if (!this.isTimeoutStarted) {
-  //     this.isTimeoutStarted = true;
-  //     setTimeout(() => {
-  //       console.log(e);
-  //       this.isTimeoutStarted = false;
-  //     }, 2000);
-  //   }
-  // }
-
   ngOnInit(): void {
     // Retrieve the token from AuthService
     const token = this.authService.getToken();
@@ -81,7 +73,7 @@ export class HomeComponent implements OnInit {
       // Make the request with the token
       this.userService.getUserProfile(token)
       .subscribe(
-        (data) => {
+        (data : any) => {
           this.userProfileData = data;
           console.log('User Profile Data:', this.userProfileData);
         },
@@ -90,6 +82,8 @@ export class HomeComponent implements OnInit {
         }
       );
     }
+    
+    this.authService.refreshAccessToken()
   }
 
   logOut(){
