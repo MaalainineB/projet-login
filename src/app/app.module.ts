@@ -10,7 +10,6 @@ import { SignupComponent } from './signup/signup.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppInterceptor } from './interceptors/app.interceptor';
-import { TokenRefreshToastComponent } from './token-refresh-toast/token-refresh-toast.component';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import { TokenRefreshToastComponent } from './token-refresh-toast/token-refresh-
     LoginComponent,
     SignupComponent,
     PageNotFoundComponent,
-    TokenRefreshToastComponent,
   ],
   imports: [
     BrowserModule,
