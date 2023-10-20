@@ -42,22 +42,4 @@ export class SignupComponent {
         })
       }
     }
-
-    onSubmit2() {
-      if (this.signUpForm.valid) {
-        const formData = this.signUpForm.value;
-        console.log(this.signUpForm.value)
-        this.signupService.signUp(formData).pipe(
-          catchError((er: HttpErrorResponse) => {
-            console.log(er.message);
-            return throwError(() => er);
-          })
-        ).subscribe((resp: any) => {
-          console.log(resp);
-          if (!resp.er) {
-            this.router.navigate(['/login']);
-          }
-        });
-      }
-    }
 }

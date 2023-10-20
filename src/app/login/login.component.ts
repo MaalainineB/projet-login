@@ -45,12 +45,8 @@ export class LoginComponent {
                 this.authService.setToken(resp)
                 localStorage.setItem('loggedIn','true')
                 const tokenInfo = this.authService.getDecodedAccessToken(resp); // decode token
-                const expireDate = tokenInfo.exp; // get token expiration dateTime
                 console.log(tokenInfo); // show decoded token object in console
-                console.log(expireDate); 
                 this.router.navigate(['/home'])
-                const usernameConnected = this.userService.getUserProfile(resp)
-                console.log("***"+ JSON.stringify(usernameConnected))
               }
             })
         }

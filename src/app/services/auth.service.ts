@@ -10,12 +10,11 @@ import { ToastService } from './toast.service';
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor(private router: Router, private http: HttpClient, private toastService:ToastService) { }
 
-  private tokenValidityDuration = 20;
-
-  expiration = (this.tokenValidityDuration - 5) * 1000;
-
+  private tokenValidityDuration = 20*1000;
+  private expiration = 20 * 1000;
   private refreshTimer: any; // Store the timer ID here
 
   getDecodedAccessToken(token: string): any {
@@ -111,16 +110,7 @@ export class AuthService {
       const decodedToken = this.getDecodedAccessToken(currentToken!);
       if (decodedToken) {
         // Récupérez la date d'émission (iat) du token
-        const issuedAt = decodedToken.iat * 1000; // Convertir en millisecondes
-
-        // Calculez la durée de validité du token (par exemple, 1 heure)
-        const tokenValidityDuration = 1000 * 2;
-
         const requestData = { token: currentToken };
-
-
-        // Vérifiez si le token est sur le point d'expirer
-        if (Date.now() - issuedAt > tokenValidityDuration) {
           
           if (this.refreshTimer) {
             clearTimeout(this.refreshTimer);
@@ -132,16 +122,14 @@ export class AuthService {
             .subscribe((data: any) => {
               if (data) {
                 this.setToken(data);
-                // this.expiration = 20 - 5;
                 console.log('Token rafraîchi avec succès.');
                 this.refreshTimer = setTimeout(() => {
-                    this.toastService.updateToastMessage('Message with countdown', 10); // Set the desired expiration time
+                    this.toastService.updateToastMessage('Attention', 10); // Set the desired expiration time
                     this.toastService.updateToastVisibility(true);
                     setTimeout(() => {
                       this.toastService.updateToastVisibility(false);
-                      this.logOut()
-                    }, 10000);
-                }, this.expiration);
+                    }, this.tokenValidityDuration);
+                }, this.tokenValidityDuration-10*1000);
               } else {
                 console.error('Réponse invalide lors du rafraîchissement du token.');
                 this.logOut()
@@ -150,7 +138,6 @@ export class AuthService {
               console.error('Erreur lors du rafraîchissement du token :', error);
               this.logOut()
             });
-        }
       }
     }
   }

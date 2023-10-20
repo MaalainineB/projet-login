@@ -20,7 +20,7 @@
     <div class="toast-header bg-danger text-white">
       <i class="fas fa-exclamation-circle fa-lg me-2"></i>
       <strong class="me-auto">Attention</strong>
-      <button type="button" class="btn btn-primary btn-sm">Restez connecté</button>
+      <button type="button" (click)="onClick()" class="btn btn-primary btn-sm">Restez connecté</button>
     </div>
     <div class="toast-body">{{ toastMessage }}</div>
   </div>

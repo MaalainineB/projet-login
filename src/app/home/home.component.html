@@ -1,59 +1,3 @@
-<!-- <div *ngIf="userProfileData">
-    <h1>User Profile</h1>
-    <p>Welcome to User Profile</p>
-    <p>User Information:</p>
-    <pre>{{ userProfileData | json }}</pre> 
-    <div>
-      <div >
-        <div >
-          <div >
-            <div>
-              <table class="table">
-                <thead   >
-                  
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col"></th>
-                    <th scope="col" >Name</th>
-                    <th scope="col" >Email</th>
-                    <th scope="col" >role</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td >{{ userProfileData.id }}</td>
-                    <td >{{ userProfileData.name }}</td>
-                    <td >{{ userProfileData.email }}</td>
-                    <td >{{ userProfileData.roles }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-
-
-<a href="#" class="text-blue-500 underline" routerLink="/login">page de login</a>
-
-<div *ngIf="userProfileData">
-
-<div class="card text-center">
-  <div class="card-header">Featured</div>
-  <div class="card-body">
-    <h5 class="card-title">Name:</h5>
-    <p class="card-text">{{ userProfileData.name }}</p>
-    <a href="#" class="btn btn-primary">Button</a>
-  </div>
-  <div class="card-footer text-muted">2 days ago</div>
-</div>
-</div> -->
-
 <div *ngIf="isToastVisible$ | async">
   <app-toast></app-toast>
 </div>
@@ -89,9 +33,9 @@
                       <p class="text-muted">{{userProfileData.roles}}</p>
                     </div>
                   </div>
-<div>
-  <button type="button" class="btn btn-warning" (click)="logOut()">Se déconnecter</button>
-</div>
+                <div>
+                  <button type="button" class="btn btn-warning" (click)="logOut()">Se déconnecter</button>
+                </div>
                 </div>
               </div>
             </div>
