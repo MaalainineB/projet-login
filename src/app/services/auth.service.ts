@@ -13,9 +13,9 @@ export class AuthService {
 
   constructor(private router: Router, private http: HttpClient, private toastService:ToastService) { }
 
-  private tokenValidityDuration = 20*1000;
+  public tokenValidityDuration = 20*1000;
   private expiration = 20 * 1000;
-  private refreshTimer: any; // Store the timer ID here
+  public refreshTimer: any; // Store the timer ID here
 
   getDecodedAccessToken(token: string): any {
     try {
@@ -124,7 +124,7 @@ export class AuthService {
                 this.setToken(data);
                 console.log('Token rafraîchi avec succès.');
                 this.refreshTimer = setTimeout(() => {
-                    this.toastService.updateToastMessage('Attention', 10); // Set the desired expiration time
+                    this.toastService.updateToastMessage('Attention', 10); // temps d'expiration
                     this.toastService.updateToastVisibility(true);
                     setTimeout(() => {
                       this.toastService.updateToastVisibility(false);

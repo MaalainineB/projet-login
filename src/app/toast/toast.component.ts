@@ -31,7 +31,10 @@ export class ToastComponent implements OnInit {
 
   onClick() {
     this.closeToast();
-    this.authService.refreshAccessToken();
+    location.reload();
+    // clearTimeout(this.authService.refreshTimer);
+    // this.authService.refreshAccessToken();
+    
   }
 
 }

@@ -30,7 +30,7 @@ export class ToastService {
           localStorage.removeItem('token');
           localStorage.setItem('loggedIn', 'false');
           this.router.navigate(["/login"])
-          console.log("found me")
+          console.log("déconnecté")
         }      
       this.toastMessage.next(`Il vous reste ${remainingTime}s avant d'être déconnecté, cliquez sur le bouton à côté pour rester connecté`);
     });
