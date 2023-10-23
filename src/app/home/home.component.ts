@@ -94,9 +94,5 @@ export class HomeComponent implements OnInit {
   logOut(){
     this.authService.logOut();
   }
-
-  showCustomToast() {
-    this.toastr.show('<app-toast></app-toast>', '', { enableHtml: true });
-  }
   
 }

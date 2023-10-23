@@ -5,7 +5,6 @@ import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { ToastrService } from 'ngx-toastr';
 
 
 @Component({

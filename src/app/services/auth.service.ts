@@ -135,9 +135,12 @@ export class AuthService {
               this.setToken(data);
               console.log('Token rafraîchi avec succès.');
               const TokenValidityDuration = this.GetTokenValidityDuration()
-              this.toastr.success('Hello world!', 'Toastr fun!');
-              this.toastr.show()
-              // this.toastService.updateToastMessage('Attention', TokenValidityDuration); // temps d'expiration
+              // const toast = this.toastr.success('Hello world!', 'Toastr fun!');
+              // toast.onTap.subscribe(() => {
+              //   this.toastr.clear(toast.toastId)
+              // })
+              // this.toastr.show()
+              this.toastService.updateToastMessage('Attention', TokenValidityDuration); // temps d'expiration
               
               // this.toastService.updateToastVisibility(false);
 
