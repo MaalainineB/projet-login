@@ -1,34 +1,69 @@
-<!-- <h1  class="text-3xl font-bold">
-    Inscription
-  </h1>
-  <div class="w-full max-w-xs">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit2()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Nom d'utilisateur:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" formControlName="name" placeholder="Nom d'utilisateur" required>
+  <section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card rounded-3">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+              class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+              alt="Sample photo">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Inscription</h3>
+  
+              <form class="px-md-2" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1q" class="form-control" formControlName="name" name="text" placeholder="Nom" required="" />
+                  <div *ngIf="!signUpForm.get('name')?.valid && signUpForm.get('name')?.touched" class="text-danger">
+                    <div *ngIf="signUpForm.get('name')?.hasError('required')">
+                      Name is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                <input class="form-control" type="email" formControlName="email" name="text" placeholder="email" required="">
+                <div *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched" class="text-danger">
+                  <div *ngIf="signUpForm.get('email')?.hasError('required')">
+                    Email is required.
+                  </div>
+                  <div *ngIf="signUpForm.get('email')?.hasError('email')" class="text-red-600">
+                    Invalid email format.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" class="form-control" formControlName="password" name="password" placeholder="••••••••" required="" />
+                <div *ngIf="!signUpForm.get('password')?.valid && signUpForm.get('password')?.touched" class="text-danger">
+                  <div *ngIf="signUpForm.get('password')?.hasError('required')">
+                    Password is required.
+                  </div>
+                </div>
+              </div>
+  
+                <div class="mb-4">
+                  <select class="select" formControlName="roles" required="">
+                    <option value="1" disabled>Roles</option>
+                    <option value="ROLE_USER">ROLE_USER</option>
+                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                  </select>
+                </div>
+                <!-- <button type="submit" class="btn btn-success btn-lg mb-1">s'inscrire</button> -->
+
+                <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-primary">
+                    Submit
+                </button> <br><br>
+                <span class="signup">Vous avez un compte? <a href="" routerLink="/login"> se connecter</a></span>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" formControlName="email" placeholder="Votre adresse email" required>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Mot de passe:</label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" formControlName="password" placeholder="••••••••" required>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="roles">Rôles:</label>
-        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" formControlName="roles" required>
-          <option value="ROLE_USER">ROLE_USER</option>
-          <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-        </select>
-      </div>
-      <button type="submit" class="w-full focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center" [disabled]="!loginForm.valid" [ngClass]="{'bg-sky-500 hover:bg-sky-600': loginForm.valid, 'bg-gray-200': !loginForm.valid}">S'inscrire</button>
-      <div>
-        Vous avez déjà un compte? <a href="#" class="text-blue-500 underline" routerLink="/signup">Se connecter</a>
-      </div>
-    </form>
-  </div> -->
-  <div class="form-bg">
+    </div>
+  </section>
+  <!-- <div class="form-bg">
     <div class="container">
         <div style="height: 800px" class="row d-flex justify-content-center align-items-center">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8">
@@ -43,10 +78,19 @@
                             <span class="input-icon"><i class="fa fa-envelope"></i></span>
                             <input class="form-control" type="text" formControlName="name" name="text" placeholder="Nom" required="">
                         </div>
-                        <div class="form-group">
-                          <span class="input-icon"><i class="fa fa-envelope"></i></span>
-                          <input class="form-control" type="email" formControlName="email" name="text" placeholder="email" required="">
+                      <div class="form-group">
+                        <span class="input-icon"><i class="fa fa-envelope"></i></span>
+                        <input class="form-control" type="email" formControlName="email" name="text" placeholder="email" required="">
+                      <div *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched"class="text-red-600">
+                        <div *ngIf="signUpForm.get('email')?.hasError('required')">
+                          Email is required.
+                        </div>
+                        <div *ngIf="signUpForm.get('email')?.hasError('email')" class="text-red-600">
+                          Invalid email format.
+                        </div>
                       </div>
+                    </div>
+
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-lock"></i></span>
                             <input class="form-control" type="password" formControlName="password" name="password" placeholder="••••••••"  required="">
@@ -66,58 +110,4 @@
             </div>
         </div>
     </div>
-  </div>
-  
-  <!-- <section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-dark text-white" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-  
-              <div class="mb-md-5 mt-md-4 pb-5">
-  
-                <h2 class="fw-bold mb-2 text-uppercase">Inscrivez-vous</h2>
-                <p class="text-white-50 mb-5">Entrez vos informations:</p>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  
-                <div class="form-outline form-white mb-4">
-                  <label class="form-label" for="typeEmailX">Nom:</label>
-                  <input type="text" id="typeNameX" class="form-control form-control-lg" formControlName="name" name="text"  placeholder="Nom" required="" />
-                </div>
-
-                <div class="form-outline form-white mb-4">
-                  <label class="form-label" for="typeEmailX">email:</label>
-                  <input type="text" id="typeEmailX" class="form-control form-control-lg" formControlName="email" name="text" placeholder="email" required="" />
-                </div>
-  
-                <div class="form-outline form-white mb-4">
-                  <label class="form-label" for="typePasswordX">Password:</label>
-                  <input type="password" id="typePasswordX" class="form-control form-control-lg" formControlName="password" name="password" id="password" placeholder="••••••••"  required="" />
-                </div>
-
-                <div class="form-outline form-white mb-4">
-                  <label class="form-label" for="typeEmailX">roles:</label>
-                  <select type="text" id="typeRoleX" class="form-control form-control-lg" formControlName="roles" required="">
-                    <option value="ROLE_USER">ROLE_USER</option>
-                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-                  </select>
-                </div>
-  
-                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-              </form>
-              <div>
-                <p class="mb-0">Vous avez un compte? <a href="#!" class="text-white-50 fw-bold" routerLink="/login">Connectez-vous</a>
-                </p>
-              </div>
-              </div>
-
-  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-   -->
-  
+  </div> -->

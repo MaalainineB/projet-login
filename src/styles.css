@@ -1,0 +1,21 @@
+/* styles.css (ou dans un fichier CSS séparé) */
+.toast-top-full-width {
+    top: 0; /* Pour le placer en haut */
+    left: 0;
+    right: 0;
+    z-index: 9999; /* Pour s'assurer que le toast est en premier plan */
+  }
+  
+  .toast {
+    background-color: #333; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+  }
+  
+  .toast-success {
+    background-color: #4CAF50; /* Couleur de fond pour les toasts de succès */
+  }
+  
+  .toast-error {
+    background-color: #F44336; /* Couleur de fond pour les toasts d'erreur */
+  }
+  

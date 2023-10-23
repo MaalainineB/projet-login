@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, interval, takeWhile } from 'rxjs';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +30,9 @@ export class ToastService {
           localStorage.setItem('loggedIn', 'false');
           this.router.navigate(["/login"])
           console.log("déconnecté")
+        } 
+        else if (remainingTime === 15) {
+          this.updateToastVisibility(true);
         }      
       this.toastMessage.next(`Il vous reste ${remainingTime}s avant d'être déconnecté, cliquez sur le bouton à côté pour rester connecté`);
     });
@@ -38,4 +40,5 @@ export class ToastService {
 
   public updateToastVisibility(newStatus: boolean) {
     this.isToastVisible.next(newStatus);
-  }}
+  }
+}

@@ -5,6 +5,7 @@ import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class LoginComponent {
   }
 
 
-    submit() {
+
+  onSubmit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value
       // console.log(formData)

@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { UserInfo } from '../interfaces/user-info';
 import { Observable } from 'rxjs';
 import { ToastService } from '../services/toast.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   keyBoardClickCompter = 0;
   
-    constructor(private userService:UserService, private authService:AuthService, public toastService: ToastService ) {
+    constructor(private userService:UserService, private authService:AuthService, public toastService: ToastService, private toastr:ToastrService ) {
           this.isToastVisible$ = this.toastService.isToastVisible$;
     }
 
@@ -94,5 +95,8 @@ export class HomeComponent implements OnInit {
     this.authService.logOut();
   }
 
+  showCustomToast() {
+    this.toastr.show('<app-toast></app-toast>', '', { enableHtml: true });
+  }
   
 }

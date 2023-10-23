@@ -1,4 +1,50 @@
-<div class="form-bg">
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-8 col-xl-6">
+          <div class="card rounded-3">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+              class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+              alt="Sample photo">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Connexion</h3>
+  
+              <form class="px-md-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1q" class="form-control" formControlName="username" name="text" placeholder="Nom d'utilisateur" required="" />
+                  <div *ngIf="!loginForm.get('username')?.valid && loginForm.get('username')?.touched" class="text-danger">
+                    <div *ngIf="loginForm.get('username')?.hasError('required')">
+                        Nom d'utilisateur est necessaire..
+                    </div>
+                  </div>
+                </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" class="form-control" formControlName="password" name="password" placeholder="••••••••" required="" />
+                <div *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched" class="text-danger">
+                  <div *ngIf="loginForm.get('password')?.hasError('required')">
+                    mot de passe est necessaire.
+                  </div>
+                </div>
+              </div>
+  
+            
+                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">
+                    Submit
+                </button> <br><br>
+                <span class="signup">Vous n'avez pas de compte? <a href="" routerLink="/signup"> s'inscrire</a></span>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <div class="form-bg">
   <div class="container">
       <div style="height: 800px" class="row d-flex justify-content-center align-items-center">
           <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8">
@@ -23,4 +69,4 @@
           </div>
       </div>
   </div>
-</div>
+</div> -->

@@ -1,4 +1,4 @@
-.form-container{
+/* .form-container{
   background: linear-gradient(#E9374C,#D31128);
   font-family: 'Roboto', sans-serif;
   font-size: 0;
@@ -127,4 +127,9 @@
       width: 100%;
       margin: 0;
   }
-}
+} */
+@media (min-width: 1025px) {
+  .h-custom {
+  height: 100vh !important;
+  }
+  }

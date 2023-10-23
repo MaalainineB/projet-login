@@ -11,6 +11,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppInterceptor } from './interceptors/app.interceptor';
 import { ToastComponent } from './toast/toast.component';
+import { provideToastr, ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+
+
 
 
 @NgModule({
@@ -27,10 +32,14 @@ import { ToastComponent } from './toast/toast.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot( ), 
 
   ],
-  providers: [{provide : HTTP_INTERCEPTORS, useClass : AppInterceptor, multi : true}],
+  providers: [
+  {provide : HTTP_INTERCEPTORS, useClass : AppInterceptor, multi : true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

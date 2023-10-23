@@ -14,7 +14,8 @@ import { UserInfo } from '../interfaces/user-info';
 export class SignupComponent {
   signUpForm = this.formBuilder.group({
     name: ['', Validators.required],
-    email: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email ]],
+    // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
     password: ['', Validators.required],
     roles: ['', Validators.required]
   });
