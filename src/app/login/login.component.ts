@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
@@ -24,6 +23,7 @@ export class LoginComponent {
   error: string = ''; // Variable pour le message d'erreur
 
 
+
   constructor(private formBuilder: FormBuilder, private router: Router, private authService:AuthService) {
     
   }
@@ -31,6 +31,12 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
+
+      const encodedPassword = btoa(this.loginForm.value.password!);
+      
+      console.log(encodedPassword)
+
+      formData.password = encodedPassword
       // console.log(formData)
       this.authService.login(formData)
         .pipe(
