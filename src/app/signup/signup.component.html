@@ -15,20 +15,18 @@
                   <input type="text" id="form3Example1q" class="form-control" formControlName="name" name="text" placeholder="Nom" required="" />
                   <div *ngIf="!signUpForm.get('name')?.valid && signUpForm.get('name')?.touched" class="text-danger">
                     <div *ngIf="signUpForm.get('name')?.hasError('required')">
-                      Name is required.
+                      Le nom est necessaire
                     </div>
                   </div>
                 </div>
 
-                <div class="form-outline mb-4">
-                <input class="form-control" type="email" formControlName="email" name="text" placeholder="email" required="">
-                <div *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched" class="text-danger">
-                  <div *ngIf="signUpForm.get('email')?.hasError('required')">
-                    Email is required.
-                  </div>
-                  <div *ngIf="signUpForm.get('email')?.hasError('email')" class="text-red-600">
-                    Invalid email format.
-                  </div>
+              <div class="form-outline mb-4">
+                <input type="text" id="email" class="form-control" formControlName="email" placeholder="Email" required>
+                <div *ngIf="signUpForm.get('email')?.hasError('required') && signUpForm.get('email')?.touched" class="text-danger">
+                  L'email est necessaire.
+                </div>
+                <div *ngIf="signUpForm.get('email')?.hasError('pattern') && signUpForm.get('email')?.touched" class="text-danger">
+                  format d'email est invalide.
                 </div>
               </div>
 
@@ -36,7 +34,7 @@
                 <input type="password" class="form-control" formControlName="password" name="password" placeholder="••••••••" required="" />
                 <div *ngIf="!signUpForm.get('password')?.valid && signUpForm.get('password')?.touched" class="text-danger">
                   <div *ngIf="signUpForm.get('password')?.hasError('required')">
-                    Password is required.
+                    le mot de passe est necessaire.
                   </div>
                 </div>
               </div>
@@ -51,7 +49,7 @@
                 <!-- <button type="submit" class="btn btn-success btn-lg mb-1">s'inscrire</button> -->
 
                 <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-primary">
-                    Submit
+                    S'inscrire
                 </button> <br><br>
                 <span class="signup">Vous avez un compte? <a href="" routerLink="/login"> se connecter</a></span>
 
@@ -63,51 +61,3 @@
       </div>
     </div>
   </section>
-  <!-- <div class="form-bg">
-    <div class="container">
-        <div style="height: 800px" class="row d-flex justify-content-center align-items-center">
-            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8">
-                <div class="form-container">
-                    <div class="form-icon">
-                        <i class="fa fa-user-circle"></i>
-                        <span class="signup"><a href="" routerLink="/login">Vous avez un compte? se connecter</a></span>
-                    </div>
-                    <form class="form-horizontal" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-                        <h3 class="title">S'inscrire</h3>
-                        <div class="form-group">
-                            <span class="input-icon"><i class="fa fa-envelope"></i></span>
-                            <input class="form-control" type="text" formControlName="name" name="text" placeholder="Nom" required="">
-                        </div>
-                      <div class="form-group">
-                        <span class="input-icon"><i class="fa fa-envelope"></i></span>
-                        <input class="form-control" type="email" formControlName="email" name="text" placeholder="email" required="">
-                      <div *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched"class="text-red-600">
-                        <div *ngIf="signUpForm.get('email')?.hasError('required')">
-                          Email is required.
-                        </div>
-                        <div *ngIf="signUpForm.get('email')?.hasError('email')" class="text-red-600">
-                          Invalid email format.
-                        </div>
-                      </div>
-                    </div>
-
-                        <div class="form-group">
-                            <span class="input-icon"><i class="fa fa-lock"></i></span>
-                            <input class="form-control" type="password" formControlName="password" name="password" placeholder="••••••••"  required="">
-                        </div>
-                        <div>
-                          <div class="form-group">
-                            <select class="form-select" aria-label="Default select example" formControlName="roles" required="">
-                              <option value="ROLE_USER">ROLE_USER</option>
-                              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
-                            </select>
-                          </div>
-                          
-                      </div>
-                        <button class="btn signin" type="submit">s'inscrire</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div> -->

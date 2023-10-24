@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       // Démarrez un nouveau timer pour appeler refreshAccessToken après 5 secondes
       this.refreshTimer = setTimeout(() => {
         this.authService.refreshAccessToken();
-      }, 5000); // 5 secondes
+      }, this.authService.GetTokenValidityDuration()*0.25*1000); // 5 secondes
     }
 
       @HostListener('document:keypress', ['$event'])

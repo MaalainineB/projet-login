@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  errorMessage: string = "";
 
   constructor(private http: HttpClient, private router:Router) {}
 

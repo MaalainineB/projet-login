@@ -24,10 +24,9 @@ export class LoginComponent {
   error: string = ''; // Variable pour le message d'erreur
 
 
-  constructor(private formBuilder: FormBuilder, private userService:UserService, private router: Router, private authService:AuthService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService:AuthService) {
     
   }
-
 
   onSubmit() {
     if (this.loginForm.valid) {
