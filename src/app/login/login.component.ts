@@ -33,8 +33,10 @@ export class LoginComponent {
       const formData = this.loginForm.value;
 
       const encodedPassword = btoa(this.loginForm.value.password!);
-      
+      const decodedPassword = atob(encodedPassword);
+
       console.log(encodedPassword)
+      console.log(decodedPassword)
 
       formData.password = encodedPassword
       // console.log(formData)

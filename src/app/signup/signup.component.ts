@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SignupService } from '../services/signup.service';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +22,7 @@ export class SignupComponent {
   });
   
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private signupService: SignupService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) {
   }
 
 
@@ -30,7 +30,7 @@ export class SignupComponent {
     if (this.signUpForm.valid) {
       const formData = this.signUpForm.value
       console.log(formData)
-      this.signupService.signUp(formData)
+      this.authService.signUp(formData)
       .pipe (
         catchError((er: HttpErrorResponse) => {
           console.log(er.message)
