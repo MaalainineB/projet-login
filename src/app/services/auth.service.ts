@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthService {
 
-  constructor(private router: Router, private http: HttpClient, private toastService:ToastService, private toastr: ToastrService) { }
+  constructor(private router: Router, private http: HttpClient, private toastService:ToastService) { }
 
   public refreshTimer: any; // Store the timer ID here
 
@@ -43,6 +43,7 @@ export class AuthService {
     this.removeToken()
     localStorage.setItem('loggedIn', 'false');
     this.router.navigate(["/login"])
+    this.toastService.ToastCancel()
   }
 
   static isLoggedIn() {

@@ -45,6 +45,14 @@ export class ToastService {
       });
   }
 
+  public ToastCancel() {
+    if (this.countdownSubscription) {
+      this.updateToastVisibility(false);
+      this.countdownSubscription.unsubscribe();
+    }
+  }
+
+
   public updateToastVisibility(newStatus: boolean) {
     this.isToastVisible.next(newStatus);
   }

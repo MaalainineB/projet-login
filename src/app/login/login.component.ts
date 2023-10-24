@@ -20,37 +20,37 @@ export class LoginComponent {
   });
 
   usernameConnected: string = "ee"
-
   isLoggedIn:string = "false";
+  error: string = ''; // Variable pour le message d'erreur
+
 
   constructor(private formBuilder: FormBuilder, private userService:UserService, private router: Router, private authService:AuthService) {
     
   }
 
 
-
   onSubmit() {
     if (this.loginForm.valid) {
-      const formData = this.loginForm.value
+      const formData = this.loginForm.value;
       // console.log(formData)
-          this.authService.login(formData)
-          .pipe (
-            catchError((er: HttpErrorResponse) => {
-              console.log(er.message)
-              return throwError(() => er)
-            })
-          )
-            .subscribe ((resp: any) => {
-              console.log(resp)
-              if(!resp.er) {
-                this.authService.setToken(resp)
-                localStorage.setItem('loggedIn','true')
-                const tokenInfo = this.authService.getDecodedAccessToken(resp); // decode token
-                console.log(tokenInfo); // show decoded token object in console
-                this.router.navigate(['/home'])
-              }
-            })
-        }
+      this.authService.login(formData)
+        .pipe(
+          catchError((er: HttpErrorResponse) => {
+            this.error = "Nom d'utilisateur ou mot de passe est incorrect"; 
+            return throwError(() => er); 
+          })
+        )
+        .subscribe((resp: any) => {
+          console.log(resp);
+          if (!resp.er) {
+            this.authService.setToken(resp);
+            localStorage.setItem('loggedIn', 'true');
+            const tokenInfo = this.authService.getDecodedAccessToken(resp); 
+            console.log(tokenInfo); 
+            this.router.navigate(['/home']);
+          }
+        });
+    }
   }
 
 }
